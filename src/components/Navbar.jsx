@@ -6,6 +6,7 @@ import { RiUserLine } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { SignInButton, SignOutButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 function Navbar() {
     return (
@@ -16,7 +17,6 @@ function Navbar() {
 
                 <img src={logo} alt="electonlogo" className="" />
 
-                {/* IMPLEMENT CLERK */}
                 <div className="flex rounded-[20px] bg-textWhite">
                     <input
                         type="text"
@@ -28,11 +28,21 @@ function Navbar() {
 
                 {/* general info */}
 
+                {/* Login Clerk */}
                 <div className="flex gap-[30px] text-textWhite">
                     {/* Login */}
                     <div className="flex items-center gap-[12px]">
                         <RiUserLine size={20} color="#fff" />
-                        <span>Sign in</span>
+                        <SignedOut>
+                            <SignInButton />
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton afterSignOutUrl="/" appearance={{
+                                variables: {
+                                    colorText: '#000'
+                                }
+                            }} />
+                        </SignedIn>
                     </div>
                     {/* Favorite */}
                     <div className="flex items-center gap-[12px]">
