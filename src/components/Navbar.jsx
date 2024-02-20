@@ -14,8 +14,8 @@ function Navbar() {
             <div className='container mx-auto flex flex-col gap-[20px] lg:flex-row justify-between items-center py-[10px] lg:py-[30px]'>
 
                 {/* search component */}
+                <Link to={'/'}><img src={logo} alt="electonlogo" className="" /></Link>
 
-                <img src={logo} alt="electonlogo" className="" />
 
                 <div className="flex rounded-[20px] bg-textWhite">
                     <input

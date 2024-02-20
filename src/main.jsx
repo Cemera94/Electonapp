@@ -11,6 +11,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 // pages/layout
 import AppLayout from './AppLayout.jsx'
 import HomePage from './pages/HomePage.jsx';
+import ProductDetailsPage from './pages/ProductDetailsPage.jsx'
 
 // Clerk
 import { ClerkProvider } from '@clerk/clerk-react'
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: 'productDetails/:id',
+        element: <ProductDetailsPage />
       }
     ]
   }
