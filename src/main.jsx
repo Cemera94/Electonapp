@@ -16,6 +16,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage.jsx'
 // Clerk
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Provider } from 'react-redux'
+import CartPage from './pages/CartPage.jsx'
 
 // Import your publishable key - CLERK
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'productDetails/:id',
         element: <ProductDetailsPage />
+      },
+      {
+        path: 'cart',
+        element: <CartPage />
       }
     ]
   }

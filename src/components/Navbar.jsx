@@ -58,7 +58,7 @@ function Navbar() {
                             <IoCartOutline size={30} color="#fff" />
                             <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">0</span>
                         </div>
-                        <Link to='/'>Cart</Link>
+                        <Link to='/cart'>Cart</Link>
                     </div>
                 </div>
             </div>
