@@ -18,7 +18,7 @@ function CardProductComponent({ item }) {
                     readOnly
                 />
             </div>
-            <button className='w-full bg-mainOrange py-[6px] rounded-b-[20px] text-textWhite'><Link to={`/productDetails/${item.id}`}>View Details</Link></button>
+            <Link to={`/productDetails/${item.id}`}><button className='w-full bg-mainOrange py-[6px] rounded-b-[20px] text-textWhite'>View Details</button></Link>
 
         </div>
     )
