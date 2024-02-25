@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import ProductsService from "../services/productsService";
+import { setProductCart } from "../store/productSlice";
 
 // icons
 import { IoMdCheckmark } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
+import ButtonComponent from "../components/ButtonComponent";
+
+// dispatch
+import { useDispatch } from "react-redux";
 
 function ProductDetails() {
 
@@ -13,6 +18,8 @@ function ProductDetails() {
     const [loader, setLoader] = useState(false);
 
     const { id } = useParams();
+
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -24,13 +31,16 @@ function ProductDetails() {
             .catch(err => console.log(err))
     }, [])
 
+    const addToCart = (product) => {
+        dispatch(setProductCart(product))
+    }
+
 
     return (
         <div className="container mx-auto flex mt-[50px] gap-[50px] justify-center mb-[40px]">
 
             {loader ?
                 <>
-                    {console.log(singleProduct)}
                     <div className="flex flex-col gap-4 justify-center items-center">
                         <div className="w-[400px] h-[400px] border border-mainBlue rounded-[20px]">
                             <img src={singleProduct.images[activeImage]} alt="" className="rounded-[20px] h-full object-cover" />
@@ -60,7 +70,7 @@ function ProductDetails() {
                             </div>
                         </div>
                         <div className="flex gap-[20px]">
-                            <button className="bg-mainOrange px-[30px] py-[12px] text-textWhite rounded-[20px]"><Link to={'/cart'}>Add to cart</Link></button>
+                            <ButtonComponent textBtn={'Add to cart'} color={'#eda415'} onClick={() => { addToCart(singleProduct) }} />
                             <button className="bg-slate-300 h-full px-[12px] rounded-full"><CiHeart size={30} /></button>
                         </div>
                     </div>
