@@ -6,6 +6,10 @@ import { removeItemHandler, setPriceHandler } from "../store/cartSlice";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
+// motion
+import { motion } from "framer-motion";
+
+
 function CartItemComponent({ single, index }) {
 
     const dispatch = useDispatch();
@@ -44,13 +48,25 @@ function CartItemComponent({ single, index }) {
                 <div>
                     <div className="flex gap-3">
                         <div className="bg-slate-200 flex gap-3">
-                            <button onClick={() => dispatch(setPriceHandler({ increment: -1, index }))} className="px-[16px] border border-slate-300">
-                                -
-                            </button>
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 1.15 }}
+                                drag="x"
+                                dragConstraints={{ left: -100, right: 100 }}>
+                                <button onClick={() => dispatch(setPriceHandler({ increment: -1, index }))} className="px-[16px] border border-slate-300">
+                                    -
+                                </button>
+                            </motion.div>
                             <p>{single.count}</p>
-                            <button onClick={() => dispatch(setPriceHandler({ increment: 1, index }))} className="px-[16px] border border-slate-300">
-                                +
-                            </button>
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 1.15 }}
+                                drag="x"
+                                dragConstraints={{ left: -100, right: 100 }}>
+                                <button onClick={() => dispatch(setPriceHandler({ increment: 1, index }))} className="px-[16px] border border-slate-300">
+                                    +
+                                </button>
+                            </motion.div>
                         </div>
                     </div>
                 </div>

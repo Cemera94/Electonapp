@@ -8,6 +8,7 @@ import CategoryComponent from './components/CategoryComponent.jsx'
 
 // axios
 import axios from 'axios';
+import FooterComponent from './components/FooterComponent.jsx';
 
 axios.defaults.baseURL = 'https://dummyjson.com';
 
@@ -20,8 +21,10 @@ function AppLayout() {
       <Navbar />
       {/* Category */}
       <CategoryComponent />
+      {/* Main content */}
       <Outlet />
       {/* Footer component */}
+      <FooterComponent />
     </div>
   )
 }

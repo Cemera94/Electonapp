@@ -1,31 +1,27 @@
-import { useEffect, useState } from "react"
-import ProductsService from "../services/productsService"
-import { useDispatch, useSelector } from "react-redux"
-import { setProducts } from "../store/productSlice";
-
-import CardProductComponent from "../components/CardProductComponent.jsx"
-
-import { FaList } from "react-icons/fa";
-import { IoGridOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux"
+import ProductsService from "../services/productsService";
+import CardProductComponent from "../components/CardProductComponent";
 
 // motion
 import { motion } from "framer-motion";
+import { FaList } from "react-icons/fa";
+import { IoGridOutline } from "react-icons/io5";
 
+function ProductsOfSearchPage() {
 
-function HomePage() {
-
+    const [currentSearchProducts, setCurrentSearchProducts] = useState([]);
     const [view, setView] = useState("grid");
 
-    const dispatch = useDispatch();
-    const { products } = useSelector(state => state.productStore)
+
+
+    const { searchValue } = useSelector(state => state.productStore)
 
     useEffect(() => {
-        ProductsService.getAllProducts()
-            .then((res) => dispatch(setProducts(res.data.products)))
+        ProductsService.getSearchProduct(searchValue)
+            .then((res) => setCurrentSearchProducts(res.data.products))
             .catch((err) => console.log(err))
-    }, [])
-
-
+    }, [searchValue])
 
     return (
         <div className="container mx-auto mt-[30px] mb-[30px] flex flex-col">
@@ -70,7 +66,7 @@ function HomePage() {
             <div className={view === `grid`
                 ? "flex flex-wrap gap-[30px] items-center justify-center mt-[50px]"
                 : "flex flex-col gap-[20px] mt-[50px]"}>
-                {products.map((item, index) => {
+                {currentSearchProducts.map((item) => {
                     return <CardProductComponent key={item.id} item={item} view={view} />
                 })}
             </div>
@@ -78,4 +74,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default ProductsOfSearchPage

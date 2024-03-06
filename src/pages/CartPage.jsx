@@ -1,13 +1,37 @@
 import { Rating } from "@mui/material"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import CartItemComponent from "../components/CartItemComponent"
 import ButtonComponent from "../components/ButtonComponent"
 
+// mui 
+import {
+    MenuItem,
+    TextField,
+} from "@mui/material";
+
+// constants
+import country from "../constats/country"
+
+// motion
+import { motion } from "framer-motion";
+
+
 function CartPage() {
 
-
+    const [currentCoupon, setCurrentCoupon] = useState(null)
     const { cart, totalPrice } = useSelector(state => state.cartStore)
+
+    const coupon = useRef();
+
+    function handleCoupon() {
+
+        setCurrentCoupon(coupon.current.value);
+        setDisableInput(true);
+
+        coupon.current.value = "";
+
+    }
 
 
     return (
@@ -37,16 +61,39 @@ function CartPage() {
                             <span>${totalPrice}</span>
                         </div>
                         <div className="flex justify-between border-b-2 pb-[30px]">
-                            <input type="text" placeholder="Enter coupon code" />
-                            <button className="text-mainBlue">Apply</button>
+                            <input
+                                type="text"
+                                placeholder="Enter coupon code"
+                                ref={coupon}
+                                className="outline-none"
+                            />
+                            <motion.div
+                                whileTap={{ scale: 1.15 }}
+                                drag="x"
+                                dragConstraints={{ left: -100, right: 100 }}>
+                                <button className="text-mainBlue" onClick={() => handleCoupon()}>Apply</button>
+                            </motion.div>
                         </div>
                         <div className="flex justify-between">
-                            <label htmlFor="">Country</label>
-                            <select name="country" id="country"></select>
+                            <TextField
+                                id="select-country"
+                                select
+                                label="Country"
+                                helperText="Please select your Country"
+                                className="w-full"
+                            >
+                                {country.map((option, index) => (
+                                    <MenuItem key={index} value={option.name}>
+                                        {option.name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between text-xl">
                             <span>Total amount</span>
-                            <span>$</span>
+                            <span>
+                                {currentCoupon === 'Jovan' ? <span>{totalPrice / 2}$</span> : <span>{totalPrice}$</span>}
+                            </span>
                         </div>
                         <div className="flex justify-center">
                             <ButtonComponent color={'#eda415'} textBtn={'Proceed to checkout'} />

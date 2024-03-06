@@ -7,11 +7,27 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { SignInButton, SignOutButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import { setSearchValue } from "../store/productSlice";
+
+
+// motion
+import { motion } from "framer-motion";
 
 function Navbar() {
 
     const { totalProduct } = useSelector(state => state.cartStore)
+    const { totalFavorite } = useSelector(state => state.favoriteStore)
+
+    const dispatch = useDispatch();
+
+    const searchValue = useRef();
+
+    function handleSearchValue() {
+        dispatch(setSearchValue(searchValue.current.value))
+        searchValue.current.value = "";
+    }
 
 
     return (
@@ -27,8 +43,23 @@ function Navbar() {
                         type="text"
                         placeholder="Search any things"
                         className="py-[18px] px-[25px] rounded-[20px] outline-none placeholder:text-black text-[14px]"
+                        ref={searchValue}
                     />
-                    <button className="px-[40px] bg-mainOrange text-textWhite rounded-[20px] text-[14px]">Search</button>
+
+                    <Link
+                        to={`/products/search/${searchValue}`}
+                        className=""
+                    >
+                        <motion.div
+                            whileTap={{ scale: 1.05 }}
+                            drag="x"
+                            dragConstraints={{ left: -100, right: 100 }}>
+                            <button
+                                className="px-[40px] py-[18px] bg-mainOrange text-textWhite rounded-[20px] text-[14px]"
+                                onClick={() => handleSearchValue()}
+                            >Search</button>
+                        </motion.div>
+                    </Link>
                 </div>
 
                 {/* general info */}
@@ -53,9 +84,9 @@ function Navbar() {
                     <div className="flex items-center gap-[12px]">
                         <div className="flex items-center gap-[3px]">
                             <CiHeart size={30} color="#fff" />
-                            <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">0</span>
+                            <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">{totalFavorite}</span>
                         </div>
-                        <Link to='/'>Favorite</Link>
+                        <Link to='/favorites'>Favorite</Link>
                     </div>
                     {/* Cart */}
                     <div className="flex items-center gap-[12px]">
@@ -67,7 +98,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
