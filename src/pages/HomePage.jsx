@@ -28,8 +28,8 @@ function HomePage() {
 
 
     return (
-        <div className="container mx-auto mt-[30px] mb-[30px] flex flex-col">
-            <div className="flex justify-end gap-[20px] mr-[50px]">
+        <div className="container mx-auto mt-[30px] mb-[30px] flex flex-col px-[10px] lg:px-[0px]">
+            <div className="flex justify-end gap-[20px] lg:mr-[50px]">
                 <motion.div
                     whileHover={{ scale: 1.15 }}
                     drag="x"
