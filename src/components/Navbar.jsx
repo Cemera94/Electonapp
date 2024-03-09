@@ -42,7 +42,7 @@ function Navbar() {
                     <input
                         type="text"
                         placeholder="Search any things"
-                        className="py-[18px] px-[25px] rounded-[20px] outline-none placeholder:text-black text-[14px]"
+                        className="lg:py-[18px] lg:px-[25px] px-[10px] rounded-[20px] outline-none placeholder:text-black text-[14px]"
                         ref={searchValue}
                     />
 
@@ -64,10 +64,10 @@ function Navbar() {
                 {/* general info */}
 
                 {/* Login Clerk */}
-                <div className="flex gap-[30px] text-textWhite">
+                <div className="flex items-center gap-[30px] text-textWhite">
                     {/* Login */}
-                    <div className="flex items-center gap-[12px]">
-                        <RiUserLine size={20} color="#fff" />
+                    <div className="flex flex-col items-center gap-[12px]">
+                        <RiUserLine size={27} color="#fff" />
                         <SignedOut>
                             <SignInButton />
                         </SignedOut>
@@ -80,7 +80,7 @@ function Navbar() {
                         </SignedIn>
                     </div>
                     {/* Favorite */}
-                    <div className="flex items-center gap-[12px]">
+                    <div className="flex flex-col items-center gap-[12px]">
                         <div className="flex items-center gap-[3px]">
                             <CiHeart size={30} color="#fff" />
                             <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">{totalFavorite}</span>
@@ -88,7 +88,7 @@ function Navbar() {
                         <Link to='/favorites'>Favorite</Link>
                     </div>
                     {/* Cart */}
-                    <div className="flex items-center gap-[12px]">
+                    <div className="flex flex-col items-center gap-[12px]">
                         <div className="flex items-center gap-[3px]">
                             <IoCartOutline size={30} color="#fff" />
                             <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">{totalProduct}</span>

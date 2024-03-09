@@ -38,7 +38,7 @@ function FooterComponent() {
                 </div>
 
                 {/* right side */}
-                <div className='flex  w-full lg:w-[75%] justify-between items-start gap-[30px]'>
+                <div className='flex  w-full lg:w-[75%] justify-between items-start gap-[30px] flex-wrap'>
                     <FooterListComponent title='Find product' item={findProduct} />
                     <FooterListComponent title='About us' item={aboutUs} />
                     <FooterListComponent title='Get help' item={getHelp} />
