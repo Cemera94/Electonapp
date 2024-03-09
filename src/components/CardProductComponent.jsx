@@ -9,8 +9,7 @@ function CardProductComponent({ item, view }) {
     return (
         <motion.div
             whileHover={{ scale: 1.05 }}
-            drag="x"
-            dragConstraints={{ left: -100, right: 100 }} className={view === 'list' ? 'w-full flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] justify-between items-center bg-[#E2F4FF]  px-[30px] py-[20px] rounded-[30px]' :
+            className={view === 'list' ? 'w-full flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] justify-between items-center bg-[#E2F4FF]  px-[30px] py-[20px] rounded-[30px]' :
                 'w-[300px] h-full border border-mainBlue rounded-[20px] flex flex-col  justify-between text-center cursor-pointer gap-[20px]'}>
             <div className='relative'>
                 <img src={item.thumbnail} alt={item.title} className={view === 'grid'
