@@ -82,18 +82,18 @@ function Navbar() {
                     {/* Favorite */}
                     <div className="flex flex-col lg:flex-row items-center gap-[12px]">
                         <div className="flex items-center gap-[3px]">
-                            <CiHeart size={30} color="#fff" />
+                            <Link to='/favorites'><CiHeart size={30} color="#fff" /></Link>
                             <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">{totalFavorite}</span>
                         </div>
-                        <Link to='/favorites'>Favorite</Link>
+                        <Link to='/favorites' className="hidden lg:block">Favorite</Link>
                     </div>
                     {/* Cart */}
                     <div className="flex flex-col lg:flex-row items-center gap-[12px]">
                         <div className="flex items-center gap-[3px]">
-                            <IoCartOutline size={30} color="#fff" />
+                            <Link to='/cart'><IoCartOutline size={30} color="#fff" /></Link>
                             <span className="text-[10px] bg-mainOrange rounded-full w-[15px] h-[15px] flex justify-center items-center">{totalProduct}</span>
                         </div>
-                        <Link to='/cart'>Cart</Link>
+                        <Link to='/cart' className="hidden lg:block">Cart</Link>
                     </div>
                 </div>
             </div>
