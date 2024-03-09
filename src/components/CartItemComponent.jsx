@@ -51,8 +51,7 @@ function CartItemComponent({ single, index }) {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 1.15 }}
-                                drag="x"
-                                dragConstraints={{ left: -100, right: 100 }}>
+                            >
                                 <button onClick={() => dispatch(setPriceHandler({ increment: -1, index }))} className="px-[16px] border border-slate-300">
                                     -
                                 </button>
@@ -61,8 +60,7 @@ function CartItemComponent({ single, index }) {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 1.15 }}
-                                drag="x"
-                                dragConstraints={{ left: -100, right: 100 }}>
+                            >
                                 <button onClick={() => dispatch(setPriceHandler({ increment: 1, index }))} className="px-[16px] border border-slate-300">
                                     +
                                 </button>

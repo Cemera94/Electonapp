@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import ProductsService from "../services/productsService";
-import { setProductCart } from "../store/cartSlice";
+import { setPriceHandler, setProductCart } from "../store/cartSlice";
 
 // icons
 import { IoMdCheckmark } from "react-icons/io";
@@ -34,7 +34,8 @@ function ProductDetails() {
     useEffect(() => {
         ProductsService.getSingleProduct(id)
             .then((res) => {
-                setSingleProduct(res.data);
+                const updatedProduct = { ...res.data, count: 1 };
+                setSingleProduct(updatedProduct);
                 setLoader(true);
             })
             .catch(err => console.log(err))
@@ -63,6 +64,24 @@ function ProductDetails() {
         })
     }
 
+    const quantityHandler = (el) => {
+        const updatedProduct = { ...singleProduct };
+
+
+        if (el.target.name === 'decrement') {
+            if (updatedProduct.count === 1) {
+                return
+            } else {
+                updatedProduct.count -= 1;
+            }
+        } else if (el.target.name === 'increment') {
+            updatedProduct.count += 1;
+        }
+
+        setSingleProduct(updatedProduct);
+        dispatch(setProductCart(singleProduct))
+    }
+
     return (
         <div className="container mx-auto px-[20px] flex flex-col lg:flex-row mt-[50px] gap-[50px] justify-center mb-[40px]">
 
@@ -84,10 +103,9 @@ function ProductDetails() {
                                     key={index}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 1.15 }}
-                                    drag="x"
-                                    dragConstraints={{ left: -100, right: 100 }}><img
-                                        src={image}
-                                        className="w-[50px] h-[50px] lg:w-[100px] lg:h-[100px] rounded-[10px] border border-mainBlue cursor-pointer" onClick={() => setActiveImage(index)}>
+                                ><img
+                                    src={image}
+                                    className="w-[50px] h-[50px] lg:w-[100px] lg:h-[100px] rounded-[10px] border border-mainBlue cursor-pointer" onClick={() => setActiveImage(index)}>
                                     </img></motion.div>
                             })}
                         </div>
@@ -116,22 +134,19 @@ function ProductDetails() {
                         <div className="flex gap-3">
                             <p>Quantity:</p>
                             <div className="bg-slate-300 flex gap-3">
-                                <button className="px-[16px] border border-slate-400">-</button>
-                                <p>1</p>
-                                <button className="px-[16px] border border-slate-400">+</button>
+                                <button name="decrement" className="px-[16px] border border-slate-400" onClick={(el) => quantityHandler(el)}>-</button>
+                                <p>{singleProduct.count}</p>
+                                <button name="increment" className="px-[16px] border border-slate-400" onClick={(el) => quantityHandler(el)}>+</button>
                             </div>
                         </div>
                         <div className="flex gap-[20px]">
                             <motion.div whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 1.15 }}
-                                drag="x"
-                                dragConstraints={{ left: -100, right: 100 }}>
+                            >
                                 <ButtonComponent textBtn={'Add to cart'} color={'#eda415'} onClick={() => { addToCart(singleProduct) }} />
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 1.15 }}
-                                drag="x"
-                                dragConstraints={{ left: -100, right: 100 }}
                                 onClick={() => { addToFavorites(singleProduct) }}
                                 className="bg-slate-300  px-[24px]  rounded-full py-[8px] cursor-pointer" >
                                 {isFavorite === parseInt(id) ? <IoIosHeart color="red" size={30} /> : <CiHeart size={30} />}

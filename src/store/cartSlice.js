@@ -9,6 +9,8 @@ const cartSlice = createSlice({
     },
     reducers: {
         setProductCart: (state, action) => {
+
+            console.log(action.payload);
             let coppyAray = [...state.cart];
 
             let findIndex = null;

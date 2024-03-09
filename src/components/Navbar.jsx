@@ -42,7 +42,7 @@ function Navbar() {
                     <input
                         type="text"
                         placeholder="Search any things"
-                        className="lg:py-[18px] lg:px-[25px] rounded-[20px] outline-none placeholder:text-black lg:text-[14px] text-[10px] px-[10px] py-[6px]"
+                        className="py-[18px] px-[25px] rounded-[20px] outline-none placeholder:text-black text-[14px]"
                         ref={searchValue}
                     />
 
@@ -52,10 +52,9 @@ function Navbar() {
                     >
                         <motion.div
                             whileTap={{ scale: 1.05 }}
-                            drag="x"
-                            dragConstraints={{ left: -100, right: 100 }}>
+                        >
                             <button
-                                className="lg:px-[40px] lg:py-[18px] bg-mainOrange text-textWhite rounded-[20px] lg:text-[14px] text-[10px] px-[10px] py-[7px]"
+                                className="px-[40px] py-[18px] bg-mainOrange text-textWhite rounded-[20px] text-[14px]"
                                 onClick={() => handleSearchValue()}
                             >Search</button>
                         </motion.div>
@@ -65,7 +64,7 @@ function Navbar() {
                 {/* general info */}
 
                 {/* Login Clerk */}
-                <div className="flex flex-col lg:flex-row gap-[30px] text-textWhite">
+                <div className="flex gap-[30px] text-textWhite">
                     {/* Login */}
                     <div className="flex items-center gap-[12px]">
                         <RiUserLine size={20} color="#fff" />

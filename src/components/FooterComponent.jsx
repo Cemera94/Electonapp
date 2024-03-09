@@ -22,7 +22,7 @@ function FooterComponent() {
             {/* Content */}
             <div className='container mx-auto mt-[40px] flex flex-col lg:flex-row items-center lg:gap-[100px] gap-[30px]'>
                 {/* left side */}
-                <div className='w-full lg:w-[25%] flex flex-col gap-[30px] text-mainBlue justify-center items-center lg:items-start'>
+                <div className='w-full lg:w-[25%] flex lg:flex-col gap-[30px] text-mainBlue justify-center items-center lg:items-start'>
                     <img src={logo} alt="logo" className='w-[150px] h-[40px]' />
                     <div className='hidden lg:block'>
                         <p>64 st james boulevard</p>
@@ -38,7 +38,7 @@ function FooterComponent() {
                 </div>
 
                 {/* right side */}
-                <div className='flex flex-col lg:flex-row w-full lg:w-[75%] lg:justify-between items-start gap-[30px]'>
+                <div className='flex  w-full lg:w-[75%] justify-between items-start gap-[30px]'>
                     <FooterListComponent title='Find product' item={findProduct} />
                     <FooterListComponent title='About us' item={aboutUs} />
                     <FooterListComponent title='Get help' item={getHelp} />
